@@ -23,6 +23,7 @@ apt-get update
 apt-get install -y kubelet kubeadm kubectl
 
 echo "deploying kubernetes (with flannel)..."
+modprobe br_netfilter
 sysctl net.bridge.bridge-nf-call-iptables=1
 kubeadm init --pod-network-cidr=10.244.0.0/16
 export KUBECONFIG=/etc/kubernetes/admin.conf
